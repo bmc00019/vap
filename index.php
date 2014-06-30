@@ -2,6 +2,10 @@
 
 require_once 'analytics.php';
 
+echo "<pre>";
+print_r($props);
+echo "</pre>";
+
 ?>
 
 <!DOCTYPE html>
@@ -105,28 +109,33 @@ require_once 'analytics.php';
 			<td></td>
 		</tr>	
 		<tr>
-			<td>% New Visits</td>
-			<td></td>
+			<td>% New Users </td>
+			<td><?php echo $vg_new_users; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
-			<td>% Returning Visits</td>
-			<td></td>
+			<td>% Returning Users</td>
+			<td><?php echo $vg_return_users; ?></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>% Return Visits > 26 </td>
+			<td>Raw number of session by a user who has visited 26 times or more</td>
+			<td><?php echo $vice_global_user_count->totalsForAllResults['ga:sessions']; ?></td>
 			<td></td>
+		</tr>	
+		<tr>
+			<td>% of sessions by return users who have visited 26 times or more</td>
+			<td><?php echo $sessions_users_over_26_percent; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td>% Visits < 60 seconds</td>
+			<td><?php echo $sessions_under_60_seconds; ?></td>
 			<td></td>
-			<td></td>
-		</tr>	
+		</tr>
 		<tr>
-			<td>% Visits >= 60 seconds</td>
-			<td></td>
+			<td>% Visits > 60 seconds</td>
+			<td><?php echo $sessions_over_60_seconds; ?></td>
 			<td></td>
 		</tr>	
 		<tr>

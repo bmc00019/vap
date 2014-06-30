@@ -68,7 +68,7 @@ $vice_id = 'ga:45303215';
 */
 
 // General Metrics
-$general_metrics = 'ga:users,ga:sessions,ga:pageviews,ga:avgSessionDuration,ga:sessionDuration,ga:bounceRate';
+$general_metrics = 'ga:users,ga:sessions,ga:pageviews,ga:avgSessionDuration,ga:sessionDuration,ga:bounceRate,ga:exits';
 	/*
 		[0] Users (uniques)
 		[1] Sessions (visits)
@@ -137,15 +137,66 @@ $vice_global_mobile_tablet_data = array_pop($vice_global_mobile_tablet_data);
 $new_vs_returning = array(
 		'dimensions' => 'ga:userType'
 	);
-$vice_global_general = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$new_vs_returning);
+$vice_global_general_users = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$new_vs_returning);
 
-echo "<pre>";
-echo "user type";
-print_r($vice_global_general);
-echo "</pre>";
+// get the User Totals array
+$vg_user_totals = $vice_global_general_users->totalsForAllResults;
+// New Visitors (raw)
+$vg_new_user_raw = $vice_global_general_users->rows[0][1];
 
-// $vg_percent_new_visitors = ($new_visitor_raw / $vg_general_data[1]);
-// $vg_percent_returning_visitors = ($returning_visitors_raw / $vg_general_data[1]);
+// Returning Visitors (raw)
+$vg_returning_users_raw = $vice_global_general_users->rows[1][1];
+	// New Visitors (%)
+	$vg_new_users = calcPercentage($vg_new_user_raw, $vg_user_totals['ga:users']);
+	// Return Visitors (%)
+	$vg_return_users = calcPercentage($vg_returning_users_raw, $vg_user_totals['ga:users']);
+
+// Sessions/Visits for Return Users who have visited the site 26 times or more
+
+	$user_session_count_params = array(
+		'dimensions' => 'ga:userType',
+		'segment' => 'dynamic::ga:sessionCount>=26'
+		);
+
+	$vice_global_user_count = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$user_session_count_params);
+
+	$sessions_users_over_26_percent = calcPercentage($vice_global_user_count->totalsForAllResults['ga:sessions'], $vg_general_data[1]);
+
+// Sessions/Visits over and under 60 seconds
+
+	// OVER
+	$user_session_duration_params = array(
+		'segment' => 'dynamic::ga:sessionDuration>60',
+		);
+	$vice_global_session_duration = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$user_session_duration_params);
+
+	$sessions_over_60_seconds_raw = $vice_global_session_duration->totalsForAllResults['ga:sessions'];
+
+	$sessions_over_60_seconds = calcPercentage($sessions_over_60_seconds_raw, $vg_general_data[1]);
+
+	// UNDER
+	$user_session_duration_params_2 = array(
+		'segment' => 'dynamic::ga:sessionDuration<=60',
+		);
+	$vice_global_session_duration = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$user_session_duration_params_2);
+	
+	$sessions_under_60_seconds_raw = $vice_global_session_duration->totalsForAllResults['ga:sessions'];
+
+	$sessions_under_60_seconds = calcPercentage($sessions_under_60_seconds_raw, $vg_general_data[1]);
+
+
+
+// Traffic Sources
+	
+
+// Calculate New/Return User %
+function calcPercentage($users, $users_total) {
+	// divide visitor range by total visits
+	$val = ($users / $users_total) * 100;
+	// round off to nearest .00
+	$val = round($val, 2);
+	return $val;
+}
 
 // Calcuate the Avg Session Duration
 function calcAvgSessionDuration($val) {

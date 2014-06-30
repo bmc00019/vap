@@ -3,7 +3,7 @@
 require_once 'analytics.php';
 
 echo "<pre>";
-print_r($props);
+print_r($segments);
 echo "</pre>";
 
 ?>

@@ -1,46 +1,209 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
-require_once 'Google/Client.php';
-require_once 'Google/Auth/AssertionCredentials.php';
-require_once 'Google/Service/Analytics.php';
+require_once 'analytics.php';
 
-$key = 'd41b61d6cced78f78ffe059cfde5b6bc5d71f78e-privatekey.p12';
-
-$creds = new Google_Auth_AssertionCredentials(
-	'852504663338-b7ilp8vml66b1cebajtr7u53c9tibpve@developer.gserviceaccount.com',
-
-	array('https://www.googleapis.com/auth/analytics.readonly'),
-
-	file_get_contents($key)
-);
-
-$client = new Google_Client();
-$client->setApplicationName('Vice Analytics Test');
-$client->setDeveloperKey('AIzaSyAz2I_ihnZS-UFtTKzr3EMHMzyR59jXXi4');
-$client->setAssertionCredentials($creds);
-
-$service = new Google_Service_Analytics($client);
-
-$props = $service->management_webproperties->listManagementWebproperties('~all');
-$accounts = $service->management_accounts->listManagementAccounts();
-$segments = $service->management_segments->listManagementSegments();
-$goals = $service->management_goals->listManagementGoals("~all", "~all", "~all");
-$profiles = $service->management_profiles->listManagementProfiles("~all", "~all"); 
-
-
-echo "<pre>";
-// $abc = array_pop($props);
-$vertical_list = $props->items;
-// var_dump($vertical_list);
-
-foreach ($vertical_list as $key => $value) {
-	echo "Website Url: ";
-	echo $value['websiteUrl'];
-	echo "<br/>";
-	echo "ID: ";
-	echo $value['id'];
-	echo "<br/><br/>";
-}
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VICE Global Google Analytics</title>
+</head>
+<body>
+	<h1>June</h1>
+	<h3>Range: <?php echo $start_date; ?> to <?php echo $end_date; ?></h2>
+	<table>
+		<tr>
+			<td><strong>General</strong></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Unique Visitors</td>
+			<td><?php echo $vg_general_data[0]; ?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Total Visits (Sessions)</td>
+			<td><?php echo $vg_general_data[1]; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Total Pageviews</td>
+			<td><?php echo $vg_general_data[2]; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Time on Site (decimal)</td>
+			<td><?php echo $vice_global_avg_sess_dur ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><br/></td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><strong>Desktop</strong></td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Visits (Sessions)</td>
+			<td><?php echo $vg_desktop_sessions; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Pageviews</td>
+			<td><?php echo $vg_desktop_pageviews; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Time on Site (decimal)</td>
+			<td><?php echo $vg_desktop_avg_sess_dur; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><br/></td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><strong>Mobile</strong></td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Visits (Sessions)</td>
+			<td><?php echo $vice_global_mobile_tablet_data[0]; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Pageviews</td>
+			<td><?php echo $vice_global_mobile_tablet_data[1]; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Time on site (decimal)</td>
+			<td><?php echo $vice_mobile_tab_avg_sess_dur; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><br/></td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><strong>Engagement</strong></td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Bounce Rate %</td>
+			<td><?php echo $vg_bounce_rate; ?></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% New Visits</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Returning Visits</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>% Return Visits > 26 </td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Visits < 60 seconds</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Visits >= 60 seconds</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><br/></td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><strong>Traffic Source</strong></td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Direct</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Paid</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Search</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Social</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Noisey</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Creators Project</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Motherboard</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Fightland</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Thump</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>% Other</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>News</td>
+			<td></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>Munchies</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Sports</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,9 +1,18 @@
 <?php
 
-require_once 'analytics.php';
+require_once 'vice_global.php';
+
 
 echo "<pre>";
+echo "Noisey: ";
+print_r($other_traffic_source_data);
+echo "<br/><br/>";
 print_r($segments);
+echo "<br/><br/>";
+print_r($search_traffic);
+echo "<br/><br/>";
+
+
 echo "</pre>";
 
 ?>
@@ -150,17 +159,17 @@ echo "</pre>";
 		</tr>	
 		<tr>
 			<td>% Direct</td>
-			<td></td>
+			<td><?php echo $direct_traffic_percentage; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td>% Paid</td>
-			<td></td>
+			<td><?php echo $paid_traffic_percentage; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td>% Search</td>
-			<td></td>
+			<td><?php echo $search_traffic_percentage; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
@@ -170,27 +179,27 @@ echo "</pre>";
 		</tr>	
 		<tr>
 			<td>% Noisey</td>
-			<td></td>
+			<td><?php echo $noisey_traffic_source_percentage; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td>% Creators Project</td>
-			<td></td>
+			<td><?php echo $thecreatorsproject_traffic_source_percentage; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td>% Motherboard</td>
-			<td></td>
+			<td><?php echo $motherboard_traffic_source_percentage; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td>% Fightland</td>
-			<td></td>
+			<td><?php echo $fightland_traffic_source_percentage; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td>% Thump</td>
-			<td></td>
+			<td><?php echo $thump_traffic_source_percentage; ?></td>
 			<td></td>
 		</tr>	
 		<tr>

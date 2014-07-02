@@ -9,7 +9,8 @@ require_once 'vice_global.php';
 	<title>VICE Global Google Analytics</title>
 </head>
 <body>
-	<h1>June</h1>
+	<h1>VICE.com</h1>
+	<h2>June</h2>
 	<h3>Range: <?php echo $start_date; ?> to <?php echo $end_date; ?></h2>
 	<table>
 		<tr>
@@ -155,6 +156,11 @@ require_once 'vice_global.php';
 		<tr>
 			<td>% Search</td>
 			<td><?php echo $search_traffic_percentage; ?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>% Facebook & Twitter raw sessions</td>
+			<td><?php echo $social_traffic_source_raw; ?></td>
 			<td></td>
 		</tr>	
 		<tr>

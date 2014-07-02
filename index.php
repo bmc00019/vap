@@ -1,20 +1,5 @@
 <?php
-
 require_once 'vice_global.php';
-
-
-echo "<pre>";
-echo "Noisey: ";
-print_r($other_traffic_source_data);
-echo "<br/><br/>";
-print_r($segments);
-echo "<br/><br/>";
-print_r($search_traffic);
-echo "<br/><br/>";
-
-
-echo "</pre>";
-
 ?>
 
 <!DOCTYPE html>
@@ -173,8 +158,8 @@ echo "</pre>";
 			<td></td>
 		</tr>	
 		<tr>
-			<td>% Social</td>
-			<td></td>
+			<td>% Facebook & Twitter</td>
+			<td><?php echo $social_traffic_percent; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
@@ -207,7 +192,7 @@ echo "</pre>";
 			<td></td>
 			<td></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td>News</td>
 			<td></td>
 			<td></td>
@@ -221,7 +206,7 @@ echo "</pre>";
 			<td>Sports</td>
 			<td></td>
 			<td></td>
-		</tr>
+		</tr> -->
 	</table>
 </body>
 </html>

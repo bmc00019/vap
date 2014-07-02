@@ -42,22 +42,7 @@ $mobile = 'gaid:-14';
 
 $ids = 'ga:19645623';
 $start_date = '2014-06-01';
-$end_date = '2014-06-30';
-$metrics = 'ga:sessions,ga:visits,ga:pageviews,ga:avgSessionDuration,ga:bounceRate,ga:sessionDuration,ga:exits';
-
-$optParams = array(
-	'dimensions' => 'ga:source',
-	'sort' => '-ga:sessions',
-	// 'segment' => $tablet,
-	// 'dimensions' => 'ga:userType',
-	// 'segment' => 'dynamic::ga:sessionCount==26',
-	// 'segment' => 'dynamic::ga:sessionDuration<=60',
-	);
-
-// $dimensions = "ga:browser";
-$mobo = $service->data_ga->get($ids,$start_date,$end_date,$metrics,$optParams);
-$mobo_tablet_mobile = $service->data_ga->get($ids,$start_date,$end_date,$metrics,$optParams);
-
+$end_date = '2014-07-01';
 //Motherboard
 $motherboard_id = 'ga:19645623';
 $vice_id = 'ga:45303215';
@@ -96,6 +81,8 @@ $mobile_metrics = 'ga:sessions,ga:pageviews,ga:avgSessionDuration,ga:sessionDura
 $vice_global_general = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics);
 $vg_general_data = $vice_global_general->rows;
 $vg_general_data = array_pop($vg_general_data);
+
+$total_sessions = $vice_global_general->totalsForAllResults['ga:sessions'];
 	
 	// VICE Global Avg Session Duration
 	$vice_global_avg_sess_dur = calcAvgSessionDuration($vg_general_data[3]);
@@ -283,15 +270,17 @@ $referral = 'gaid::-8';
 	$thump_traffic_source_raw = $thump_traffic_source_data->totalsForAllResults['ga:sessions'];
 	$thump_traffic_source_percentage = calcPercentage($thump_traffic_source_raw, $vg_general_data[1]);
 
-	// Other
-	$other_sources_params = array(
+	// Facebook & Twitter
+	$ft_sources_params = array(
 		'dimensions' => 'ga:source',
 		'sort' => '-ga:sessions',
-		'segment' => 'dynamic::ga:source=~facebook.com'
+		'segment' => 'sessions::condition::ga:source=@twitter.com,ga:source=@facebook.com',
 		);
-	$other_traffic_source_data = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$other_sources_params);
+	$social_traffic_source_data = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$ft_sources_params);
+	$social_traffic_source_raw = $social_traffic_source_data->totalsForAllResults['ga:sessions'];
 
 
+$social_traffic_percent = calcPercentage($social_traffic_source_raw, $total_sessions);
 
 // Calculate New/Return User %
 function calcPercentage($users, $users_total) {

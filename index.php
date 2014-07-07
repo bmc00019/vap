@@ -1,5 +1,9 @@
 <?php
 require_once 'vice_global.php';
+// echo "<pre>";
+// print_r($profiles);
+// echo "</pre>";
+// die();
 ?>
 
 <!DOCTYPE html>
@@ -159,12 +163,12 @@ require_once 'vice_global.php';
 			<td></td>
 		</tr>
 		<tr>
-			<td>% Facebook & Twitter raw sessions</td>
+			<td>Social Raw Number</td>
 			<td><?php echo $social_traffic_source_raw; ?></td>
 			<td></td>
 		</tr>	
 		<tr>
-			<td>% Facebook & Twitter</td>
+			<td>% Social</td>
 			<td><?php echo $social_traffic_percent; ?></td>
 			<td></td>
 		</tr>	
@@ -195,24 +199,9 @@ require_once 'vice_global.php';
 		</tr>	
 		<tr>
 			<td>% Other</td>
-			<td></td>
-			<td></td>
-		</tr>
-		<!-- <tr>
-			<td>News</td>
-			<td></td>
-			<td></td>
-		</tr>	
-		<tr>
-			<td>Munchies</td>
-			<td></td>
+			<td><?php echo $other_percentage; ?></td>
 			<td></td>
 		</tr>
-		<tr>
-			<td>Sports</td>
-			<td></td>
-			<td></td>
-		</tr> -->
 	</table>
 </body>
 </html>

@@ -94,7 +94,7 @@ $mobile_metrics = 'ga:sessions,ga:pageviews,ga:avgSessionDuration,ga:sessionDura
 																*/
 
 // General
-$vice_global_general = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics);
+$vice_global_general = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics);
 $vg_general_data = $vice_global_general->rows;
 $vg_general_data = array_pop($vg_general_data);
 
@@ -112,7 +112,7 @@ $mobile_opt_params = array(
 	'segment' => $mobile_segment,
 	);
 $vice_global_mobile_tablet = $service->data_ga->
-	get($motherboard_id,$start_date,$end_date,$mobile_metrics,$mobile_opt_params);
+	get($id_id,$start_date,$end_date,$mobile_metrics,$mobile_opt_params);
 
 // Mobile & Tablet Data
 $vice_global_mobile_tablet_data = $vice_global_mobile_tablet->rows;
@@ -141,7 +141,7 @@ $vice_global_mobile_tablet_data = array_pop($vice_global_mobile_tablet_data);
 $new_vs_returning = array(
 		'dimensions' => 'ga:userType'
 	);
-$vice_global_general_users = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$new_vs_returning);
+$vice_global_general_users = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$new_vs_returning);
 
 // get the User Totals array
 $vg_user_totals = $vice_global_general_users->totalsForAllResults;
@@ -162,7 +162,7 @@ $vg_returning_users_raw = $vice_global_general_users->rows[1][1];
 		'segment' => 'dynamic::ga:sessionCount>=26'
 		);
 
-	$vice_global_user_count = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$user_session_count_params);
+	$vice_global_user_count = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$user_session_count_params);
 
 	$sessions_users_over_26_percent = calcPercentage($vice_global_user_count->totalsForAllResults['ga:sessions'], $vg_general_data[1]);
 
@@ -172,7 +172,7 @@ $vg_returning_users_raw = $vice_global_general_users->rows[1][1];
 	$user_session_duration_params = array(
 		'segment' => 'dynamic::ga:sessionDuration>60',
 		);
-	$vice_global_session_duration = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$user_session_duration_params);
+	$vice_global_session_duration = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$user_session_duration_params);
 
 	$sessions_over_60_seconds_raw = $vice_global_session_duration->totalsForAllResults['ga:sessions'];
 
@@ -182,7 +182,7 @@ $vg_returning_users_raw = $vice_global_general_users->rows[1][1];
 	$user_session_duration_params_2 = array(
 		'segment' => 'dynamic::ga:sessionDuration<=60',
 		);
-	$vice_global_session_duration = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$user_session_duration_params_2);
+	$vice_global_session_duration = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$user_session_duration_params_2);
 	
 	$sessions_under_60_seconds_raw = $vice_global_session_duration->totalsForAllResults['ga:sessions'];
 
@@ -203,7 +203,7 @@ $referral = 'gaid::-8';
 		'segment' => $direct,
 		);
 
-	$vg_direct_traffic_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$direct_params);
+	$vg_direct_traffic_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$direct_params);
 	$direct_traffic = $vg_direct_traffic_data->totalsForAllResults['ga:sessions'];
 	$direct_traffic_percentage = calcPercentage($direct_traffic, $vg_general_data[1]);
 
@@ -213,7 +213,7 @@ $referral = 'gaid::-8';
 		'segment' => $paid,
 		);
 
-	$vg_paid_traffic_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$paid_params);
+	$vg_paid_traffic_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$paid_params);
 	$paid_traffic = $vg_paid_traffic_data->totalsForAllResults['ga:sessions'];
 	$paid_traffic_percentage = calcPercentage($paid_traffic, $vg_general_data[1]);
 
@@ -223,7 +223,7 @@ $referral = 'gaid::-8';
 		'segment' => $search,
 		);
 
-	$vg_search_traffic_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$search_params);
+	$vg_search_traffic_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$search_params);
 	$search_traffic = $vg_search_traffic_data->totalsForAllResults['ga:sessions'];
 	$search_traffic_percentage = calcPercentage($search_traffic, $vg_general_data[1]);
 
@@ -232,7 +232,7 @@ $referral = 'gaid::-8';
 		'dimensions' => 'ga:source',
 		'segment' => 'dynamic::ga:source=~motherboard',
 		);
-	$vg_facebook_traffic_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$facebook_params);
+	$vg_facebook_traffic_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$facebook_params);
 	$facebook_traffic = $vg_facebook_traffic_data->totalsForAllResults['ga:sessions'];
 
 
@@ -242,7 +242,7 @@ $referral = 'gaid::-8';
 		'sort' => '-ga:sessions',
 		'segment' => 'dynamic::ga:source=~noisey.vice.com',
 		);
-	$noisey_traffic_source_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$noisey_sources_params);
+	$noisey_traffic_source_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$noisey_sources_params);
 	$noisey_traffic_source_raw = $noisey_traffic_source_data->totalsForAllResults['ga:sessions'];
 	$noisey_traffic_source_percentage = calcPercentage($noisey_traffic_source_raw, $vg_general_data[1]);
 
@@ -252,7 +252,7 @@ $referral = 'gaid::-8';
 		'sort' => '-ga:sessions',
 		'segment' => 'dynamic::ga:source=~motherboard.vice.com',
 		);
-	$motherboard_traffic_source_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$motherboard_sources_params);
+	$motherboard_traffic_source_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$motherboard_sources_params);
 	$motherboard_traffic_source_raw = $motherboard_traffic_source_data->totalsForAllResults['ga:sessions'];
 	$motherboard_traffic_source_percentage = calcPercentage($motherboard_traffic_source_raw, $vg_general_data[1]);
 
@@ -262,7 +262,7 @@ $referral = 'gaid::-8';
 		'sort' => '-ga:sessions',
 		'segment' => 'dynamic::ga:source=~fightland.vice.com',
 		);
-	$fightland_traffic_source_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$fightland_sources_params);
+	$fightland_traffic_source_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$fightland_sources_params);
 	$fightland_traffic_source_raw = $fightland_traffic_source_data->totalsForAllResults['ga:sessions'];
 	$fightland_traffic_source_percentage = calcPercentage($fightland_traffic_source_raw, $vg_general_data[1]);
 
@@ -272,7 +272,7 @@ $referral = 'gaid::-8';
 		'sort' => '-ga:sessions',
 		'segment' => 'dynamic::ga:source=~thecreatorsproject.vice.com',
 		);
-	$thecreatorsproject_traffic_source_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$thecreatorsproject_sources_params);
+	$thecreatorsproject_traffic_source_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$thecreatorsproject_sources_params);
 	$thecreatorsproject_traffic_source_raw = $thecreatorsproject_traffic_source_data->totalsForAllResults['ga:sessions'];
 	$thecreatorsproject_traffic_source_percentage = calcPercentage($thecreatorsproject_traffic_source_raw, $vg_general_data[1]);
 
@@ -282,7 +282,7 @@ $referral = 'gaid::-8';
 		'sort' => '-ga:sessions',
 		'segment' => 'dynamic::ga:source=~thump.vice.com',
 		);
-	$thump_traffic_source_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$thump_sources_params);
+	$thump_traffic_source_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$thump_sources_params);
 	$thump_traffic_source_raw = $thump_traffic_source_data->totalsForAllResults['ga:sessions'];
 	$thump_traffic_source_percentage = calcPercentage($thump_traffic_source_raw, $vg_general_data[1]);
 
@@ -292,7 +292,7 @@ $referral = 'gaid::-8';
 		'sort' => '-ga:sessions',
 		'segment' => 'sessions::condition::ga:source=@twitter.com,ga:source=@facebook.com,ga:source=@facebookpageit,ga:source=@facepageit,ga:source=@facebookpageita,ga:source=@facebookpageital,ga:source=@facebookpage,ga:source=@t.co,ga:source=@tumblr.com,ga:source=@twitterpageit,ga:source=@twitterpageita,ga:source=@vicefb,ga:source=@vicetwitter',
 		);
-	$social_traffic_source_data = $service->data_ga->get($motherboard_id,$start_date,$end_date,$general_metrics,$ft_sources_params);
+	$social_traffic_source_data = $service->data_ga->get($id_id,$start_date,$end_date,$general_metrics,$ft_sources_params);
 	$social_traffic_source_raw = $social_traffic_source_data->totalsForAllResults['ga:sessions'];
 
 

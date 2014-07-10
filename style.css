@@ -1,0 +1,11 @@
+table {
+	float: left;
+}
+table tr td {
+	border-bottom: 1px solid #efefef;
+}
+table.data-type {
+}
+
+table.data {
+}

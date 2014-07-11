@@ -1,9 +1,15 @@
 <?php 
 	require_once 'vice_us.php';
 	echo "<pre>";
-	print_r($us_sessions_over_25_data);
+	// print_r($us_traffic_source_twitter);
 	echo "<br/>";
-	echo $us_sessions_over_25;
+	echo $fb;
+	echo "<br/>";
+	echo $tw;
+	echo "<br/>";
+	echo $rd;
+	echo "<br/>";
+	echo $yt;
 	echo "</pre>";
 ?>
 <!DOCTYPE html>
@@ -224,10 +230,12 @@
 			<td><?php echo $us_sessions_over_25_percent; ?></td>
 		</tr>
 		<tr>
-			<td>Visits under 60 seconds %</td>
+			<!-- visits/sessions under 60 seconds -->
+			<td><?php echo $us_under_60s_percent; ?></td>
 		</tr>
 		<tr>
-			<td>Visits over 60 seconds %</td>
+			<!-- visits/sessions greater than or equal to 60 seconds -->
+			<td><?php echo $us_greater_equal_60s_percent; ?></td>
 		</tr>
 
 		<!-- Traffic Sources -->
@@ -235,49 +243,144 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td>Direct %</td>
+			<!-- direct -->
+			<td><?php echo $us_traffic_source_direct_percent; ?></td>
 		</tr>
 		<tr>
-			<td>Paid %</td>
+			<!-- paid -->
+			<td><?php echo $us_traffic_source_paid_percent; ?></td>
 		</tr>
 		<tr>
-			<td>Search</td>
+			<!-- search -->
+			<td><?php echo $us_traffic_source_search_percent; ?></td>
 		</tr>
 		<tr>
-			<td>Social (raw number)</td>
+			<!-- social raw number -->
+			<td><?php echo $social_totals; ?></td>
 		</tr>
 		<tr>
-			<td>Social %</td>
+			<!-- social -->
+			<td><?php echo $social_percent; ?></td>
 		</tr>
 		<tr>
-			<td>VICE.com</td>
+			<!-- VICE.com, m.vice.com -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_vice_percent) && !empty($us_traffic_source_vice_percent)) {
+						echo $us_traffic_source_vice_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>Noisey %</td>
+			<!-- noisey -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_noisey_percent) && !empty($us_traffic_source_noisey_percent)) {
+						echo $us_traffic_source_noisey_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>TCP %</td>
+			<!-- TCP -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_tcp_percent) && !empty($us_traffic_source_tcp_percent)) {
+						echo $us_traffic_source_tcp_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>Motherboard %</td>
+			<!-- motherboard -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_mobo_percent) && !empty($us_traffic_source_mobo_percent)) {
+						echo $us_traffic_source_mobo_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>Fightland %</td>
+			<!-- Fightland -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_fightland_percent) && !empty($us_traffic_source_fightland_percent)) {
+						echo $us_traffic_source_fightland_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>Thump %</td>
+			<!-- thump -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_thump_percent) && !empty($us_traffic_source_thump_percent)) {
+						echo $us_traffic_source_thump_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>i-D %</td>
+			<!-- i-D -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_iD_percent) && !empty($us_traffic_source_iD_percent)) {
+						echo $us_traffic_source_iD_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>Sports %</td>
+			<!-- sports -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_sports_percent) && !empty($us_traffic_source_sports_percent)) {
+						echo $us_traffic_source_sports_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>News %</td>
+			<!-- News -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_news_percent) && !empty($us_traffic_source_news_percent)) {
+						echo $us_traffic_source_news_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
-			<td>Munchies %</td>
+			<!-- munchies -->
+			<td>
+				<?php 
+					if(isset($us_traffic_source_munchies_percent) && !empty($us_traffic_source_munchies_percent)) {
+						echo $us_traffic_source_munchies_percent;
+					} else {
+						echo "nada";
+					}
+				?>
+			</td>
 		</tr>
 		<tr>
 			<td>Other %</td>

@@ -77,8 +77,8 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 	Optional Params
 */
 	$us_general_params = array(
-		'dimensions' => 'ga:country',
-		'filters' => 'ga:country==United States',
+		// 'dimensions' => 'ga:country',
+		// 'filters' => 'ga:country==United States',
 		);
 
 /*
@@ -96,7 +96,7 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 	// User Type
 		$us_user_type_params = array(
 			'dimensions' => 'ga:userType',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		); 
 		$us_general_user_type = $service->data_ga->get($noisey_id,$start_date,$end_date,$general_metrics,$us_user_type_params);
 
@@ -112,9 +112,9 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 
 	// Sessions by return users who have visited 26 times or more
 		$user_session_count_params = array(
-			'dimensions' => 'ga:userType,ga:country',
+			'dimensions' => 'ga:userType',
 			'segment' => 'dynamic::ga:sessionCount>=26',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$us_sessions_over_25_data = $service->data_ga->get($noisey_id,$start_date,$end_date,$general_metrics,$user_session_count_params);
@@ -124,12 +124,12 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 	// Sessions (visits) over/under 60 seconds
 		$us_sessions_greater_equal_60_seconds_params = array(
 			'segment' => 'dynamic::ga:sessionDuration>=60',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 		$us_sessions_under_60_seconds_params = array(
-			'dimensions' => 'ga:country',
+			// 'dimensions' => 'ga:country',
 			'segment' => 'dynamic::ga:sessionDuration<60',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		// raw numbers
@@ -151,28 +151,28 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source==vicefb,ga:source==vicefbus,ga:source==vicefbuk,ga:source==l.facebook.com,ga:source==facebook.com,ga:source==m.facebook.com,ga:source==vicefacebr,ga:source==vicefbanz,ga:source==lm.facebook.com,ga:source==facepageit,ga:source==pacebookpageit,ga:source==idfb,ga:source==viceusfb,ga:source==noiseyfbuk,ga:source==noiseyfbus,ga:source==vicenewsfb,ga:source==noiseyfb,ga:source==noiseyfacebr,ga:source==vicenewsfbanz,ga:source==noiseyfbanz,ga:source==thumpfbanz,ga:source==thumpfbuk,ga:source==thumpfb,ga:source==thumpfacebr,ga:source==thumpfbus,ga:source==motherboardfb,ga:source==idfbus,ga:source==idfbanz,ga:source==idfacebook,ga:source==ifb,ga:source==tcpfb,ga:source==tcpfbanz,ga:source==munchiesfb,ga:source==15600',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_twitter_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source==vicetwitterus,ga:source==vicetwitteruk,ga:source==t.co,ga:source==vicetwitter,ga:source==idtwitter,ga:source==idtwitteranz,ga:source==vicenewstwitter,ga:source==noiseytwitter,ga:source==noiseytwitteranz,ga:source==twitter,ga:source==tcptwitteranz,ga:source==tcptwitter,ga:source==thumptwitter,ga:source==thumptwitteruk,ga:source==thumptwitteranz,ga:source==thumptwitterbr,ga:source==thumptw,ga:source==munchiestwitter',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 		
 		$source_reddit_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@reddit.com,ga:source==np.reddit.com,ga:source==reddit',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_youtube_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source==youtube.com,ga:source==m.youtube.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 
@@ -182,70 +182,70 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source==vice.com,ga:source==m.vice.com,ga:source==m.vice.cn',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_mobo_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source==motherboard.vice.com,ga:source==motherboard',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_noisey_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@noisey.vice.com,ga:source=@m.noisey.vice.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_news_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@news.vice.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_thump_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@thump.vice.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_fightland_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@fightland.vice.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_tcp_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@thecreatorsproject.vice.com,ga:source=@thecreatorsproject.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_iD_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@i-d.vice.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_sports_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@sports.vice.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_munchies_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => 'sessions::condition::ga:source=@munchies.tv,ga:source=@munchies.vice.com',
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		// End Vertical Sources
@@ -310,21 +310,21 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => $paid,
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_search_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => $search,
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$source_direct_params = array(
 			'dimensions' => 'ga:source',
 			'sort' => '-ga:sessions',
 			'segment' => $direct,
-			'filters' => 'ga:country==United States',
+			// 'filters' => 'ga:country==United States',
 		);
 
 		$us_traffic_source_paid = $service->data_ga->get($noisey_id,$start_date,$end_date,$general_metrics,$source_paid_params);
@@ -348,8 +348,8 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 
 		/* MOBILE & TABLET */
 		$mobile_tablet_params = array(
-			'dimensions' => 'ga:country',
-			'filters' => 'ga:country==United States',
+			// 'dimensions' => 'ga:country',
+			// 'filters' => 'ga:country==United States',
 			'segment' => 'gaid::-11'
 			);
 

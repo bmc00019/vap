@@ -1,11 +1,15 @@
 <?php 
-	require_once 'vice_us.php';
+	require_once 'vice_global_2.php';
+
+	echo "<pre>";
+	print_r($profiles);
+	echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Google Analytics - US only</title>
+	<title>Google Analytics - Global</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>

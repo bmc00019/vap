@@ -2,7 +2,18 @@
 	require_once 'vice_global_2.php';
 
 	echo "<pre>";
-	print_r($profiles);
+
+	// echo ": ";
+	// print_r();
+	// echo "<br/><br/>";
+	// echo ": ";
+	// print_r();
+	// echo "<br/><br/>";
+	// echo ": ";
+	// print_r();
+	// echo "<br/><br/><br/>";
+	// echo ": ";
+	// print_r();
 	echo "</pre>";
 ?>
 <!DOCTYPE html>
@@ -15,6 +26,8 @@
 <body>
  	<!-- data type -->
  	<p>Date Range: <?php echo $start_date . " - " . $end_date; ?> </p>
+ 	<p><?php echo $general->profileInfo['profileName']; ?></p>
+ 	<p><?php echo $general->profileInfo['tableId']; ?></p>
 	<table class="data-type">
 		<!-- GENERAL -->
 		<tr>
@@ -47,9 +60,23 @@
 			<td>Time on Site (Decimal)</td>
 		</tr>
 
+		<!-- TABLET -->
+		<tr>
+			<td><strong>Tablet</strong></td>
+		</tr>
+		<tr>
+			<td>Pageviews</td>
+		</tr>
+		<tr>
+			<td>Visits (Sessions)</td>
+		</tr>
+		<tr>
+			<td>Time on Site (Decimal)</td>
+		</tr>
+
 		<!-- MOBILE -->
 		<tr>
-			<td><strong>Mobile & Tablet</strong></td>
+			<td><strong>Mobile</strong></td>
 		</tr>
 		<tr>
 			<td>Pageviews</td>
@@ -204,8 +231,8 @@
 			<!-- pageviews -->
 			<td>
 				<?php
-					if(isset($us_desktop_pageviews) && !empty($us_desktop_pageviews)) {
-						echo $us_desktop_pageviews; 
+					if(isset($desktop_pageviews) && !empty($desktop_pageviews)) {
+						echo $desktop_pageviews; 
 					} else {
 						echo "us desktop pageviews";
 					}
@@ -216,8 +243,8 @@
 			<!-- visits/sessions -->
 			<td>
 				<?php
-					if(isset($us_desktop_sessions) && !empty($us_desktop_sessions)) {
-						echo $us_desktop_sessions; 
+					if(isset($desktop_sessions) && !empty($desktop_sessions)) {
+						echo $desktop_sessions; 
 					} else {
 						echo "us desktop sessions";
 					}
@@ -228,8 +255,8 @@
 			<!-- time on site (avg session duration) -->
 			<td>
 				<?php
-					if(isset($us_desktop_tos) && !empty($us_desktop_tos)) {
-						echo $us_desktop_tos; 
+					if(isset($desktop_avg_session_dur) && !empty($desktop_avg_session_dur)) {
+						echo $desktop_avg_session_dur; 
 					} else {
 						echo "us desktop time on site";
 					}
@@ -237,7 +264,7 @@
 			</td>
 		</tr>
 
-		<!-- MOBILE -->
+		<!-- Tablet -->
 		<tr>
 			<td>&nbsp;</td>
 		</tr>
@@ -245,10 +272,10 @@
 			<!-- pageviews -->
 			<td>
 				<?php
-					if(isset($us_mobile_tablet->totalsForAllResults['ga:pageviews']) && !empty($us_mobile_tablet->totalsForAllResults['ga:pageviews'])) {
-					echo $us_mobile_tablet->totalsForAllResults['ga:pageviews']; 
+					if(isset($tablet_pageviews) && !empty($tablet_pageviews)) {
+						echo $tablet_pageviews; 
 					} else {
-						echo "mobile & tablet pageviews";
+						echo "tablet pageviews";
 					}
 
 				?>
@@ -258,10 +285,10 @@
 			<!-- visits/sessions -->
 			<td>
 				<?php
-					if(isset($us_mobile_tablet->totalsForAllResults['ga:sessions']) && !empty($us_mobile_tablet->totalsForAllResults['ga:sessions'])) {
-					echo $us_mobile_tablet->totalsForAllResults['ga:sessions']; 
+					if(isset($tablet_sessions) && !empty($tablet_sessions)) {
+						echo $tablet_sessions; 
 					} else {
-						echo "mobile & tablet pageviews";
+						echo "tablet sessions";
 					}
 
 				?>
@@ -272,10 +299,53 @@
 
 			<td>
 				<?php
-					if(isset($us_mobile_tablet_tos) && !empty($us_mobile_tablet_tos)) {
-						echo $us_mobile_tablet_tos;
+					if(isset($tablet_avg_session_dur) && !empty($tablet_avg_session_dur)) {
+						echo $tablet_avg_session_dur;
 					} else {
-						echo "mobile & tablet time on site";
+						echo "tablet time on site";
+					}
+				?>
+			</td>
+		</tr>
+		<!-- MOBILE -->
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<!-- pageviews -->
+			<td>
+				<?php
+					if(isset($mobile_pageviews) && !empty($mobile_pageviews)) {
+					echo $mobile_pageviews; 
+					} else {
+						echo "mobile pageviews";
+					}
+
+				?>
+			</td>
+		</tr>
+		<tr>
+			<!-- visits/sessions -->
+			<td>
+				<?php
+					if(isset($mobile_sessions) && !empty($mobile_sessions)) {
+					echo $mobile_sessions; 
+					} else {
+						echo "mobile sessions";
+					}
+
+				?>
+			</td>
+		</tr>
+		<tr>
+			<!-- time on site -->
+
+			<td>
+				<?php
+					if(isset($mobile_avg_session_dur) && !empty($mobile_avg_session_dur)) {
+						echo $mobile_avg_session_dur;
+					} else {
+						echo "mobile time on site";
 					}
 				?>
 			</td>
@@ -301,8 +371,8 @@
 			<!-- new users percent -->
 			<td>
 				<?php
-					if(isset($new_users_percent) && !empty($new_users_percent)) {
-						echo $new_users_percent; 
+					if(isset($new_visitor_session_percent) && !empty($new_visitor_session_percent)) {
+						echo $new_visitor_session_percent; 
 					} else {
 						echo "percent new users";
 					}
@@ -314,8 +384,8 @@
 			<!-- return users percent -->
 			<td>
 				<?php
-					if(isset($return_users_percent) && !empty($return_users_percent)) {
-						echo $return_users_percent; 
+					if(isset($returning_visitor_session_percent) && !empty($returning_visitor_session_percent)) {
+						echo $returning_visitor_session_percent; 
 					} else {
 						echo "percent returning users";
 					}

@@ -1,0 +1,16 @@
+@import "compass/css3";
+@import "compass/utilities/sprites";
+
+// normalize
+@import "_normalize.scss";
+// end normalize
+
+@import "_fonts.scss";
+// vars and mixins
+@import "_variables.scss";
+@import "_mixins.scss";
+// end vars and mixins
+
+// Start main styles
+@import "_main.scss";
+// end main styles

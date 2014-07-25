@@ -1,0 +1,69 @@
+/* 
+
+	----------------------
+	Main styles begin here 
+	----------------------
+
+*/
+
+.form-container {
+	@include defaults();
+	margin-top: 5rem;
+	max-width: 16rem;
+	border: 1px solid black;
+
+	h1 {
+		font-size: 1em;
+		text-align: center;
+		background: black;
+		margin: 0;
+		color: white;
+		padding: 0.5rem;
+		font-family: $siteHeaderFontStack;
+		font-weight: normal;
+		text-transform: uppercase;
+	}
+
+	form {
+		@include defaults();
+		padding: 1rem;
+		font-family: $siteFontStack;
+
+		label {
+			@include defaults();
+			display: block;
+			font-size: 0.9rem;
+			margin-bottom: 0.25rem;
+		}
+
+		input[type="text"] {
+			@include defaults();
+			display: block;
+			outline: none;
+			padding: 0.5rem;
+			border: 1px solid #ccc;
+			margin-bottom: 0.75rem;
+			font-size: 0.8rem;
+		}
+
+		select {
+			@include defaults();
+			margin-bottom: 0.75rem;
+		}
+
+		input[type="submit"] {
+			@include defaults();
+			display: block;
+			background: yellow;
+			color: black;
+			border: none;
+			outline: none;
+			padding: 1rem;
+			font-family: $siteHeaderFontStack;
+			text-transform: uppercase;
+
+		}
+
+	}
+	
+}

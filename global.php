@@ -1,5 +1,5 @@
 <?php 
-	require_once 'vice_global_2.php';
+	require_once 'vice_global.php';
 
 	echo "<pre>";
 

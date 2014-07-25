@@ -35,7 +35,7 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 	ids, start date, system segments
 */
 	//vice 
-	$vice_id = 'ga:45303215';
+	$vice_id = 'ga:45303215'; 
 	// mobo
 	$motherboard_id = 'ga:19645623';
 	// noisey
@@ -72,7 +72,6 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 	All our metrics
 */
 	$general_metrics = 'ga:users,ga:sessions,ga:pageviews,ga:avgSessionDuration,ga:sessionDuration,ga:bounceRate,ga:exits';
-
 /*
 	Optional Params
 */
@@ -85,7 +84,7 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 	Begin Queries for Data
 */
 	/* GENERAL */
-	$general = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$us_general_params);
+	$general = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$us_general_params);
 
 	// general - time on site (tos)
 	$general_tos = calcAvgSessionDuration($general->totalsForAllResults['ga:avgSessionDuration']);
@@ -98,7 +97,7 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 			'dimensions' => 'ga:userType',
 			// 'filters' => 'ga:country==United States',
 		); 
-		$us_general_user_type = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$us_user_type_params);
+		$us_general_user_type = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$us_user_type_params);
 
 		$total_users = $us_general_user_type->totalsForAllResults['ga:users'];
 		$user_types = $us_general_user_type->rows;
@@ -119,7 +118,7 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 			// 'filters' => 'ga:country==United States',
 		);
 
-		$us_sessions_over_25_data = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$user_session_count_params);
+		$us_sessions_over_25_data = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$user_session_count_params);
 		$us_sessions_over_25 = $us_sessions_over_25_data->totalsForAllResults['ga:sessions'];
 		$us_sessions_over_25_percent = round(($us_sessions_over_25 / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
@@ -135,8 +134,8 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 		);
 
 		// raw numbers
-		$us_sessions_under_60_seconds = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$us_sessions_under_60_seconds_params);
-		$us_sessions_greater_equal_60_seconds = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$us_sessions_greater_equal_60_seconds_params);
+		$us_sessions_under_60_seconds = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$us_sessions_under_60_seconds_params);
+		$us_sessions_greater_equal_60_seconds = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$us_sessions_greater_equal_60_seconds_params);
 			// percentage
 			$us_under_60s_percent = round(($us_sessions_under_60_seconds->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 			$us_greater_equal_60s_percent = 100 - $us_under_60s_percent;
@@ -252,34 +251,34 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 
 		// End Vertical Sources
 
-		$us_traffic_source_vice = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$souce_vice_params);
+		$us_traffic_source_vice = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$souce_vice_params);
 		$us_traffic_source_vice_percent = round(($us_traffic_source_vice->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_mobo = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_mobo_params);
+		$us_traffic_source_mobo = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_mobo_params);
 		$us_traffic_source_mobo_percent = round(($us_traffic_source_mobo->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 		
-		$us_traffic_source_noisey = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_noisey_params);
+		$us_traffic_source_noisey = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_noisey_params);
 		$us_traffic_source_noisey_percent = round(($us_traffic_source_noisey->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_news = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_news_params);
+		$us_traffic_source_news = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_news_params);
 		$us_traffic_source_news_percent = round(($us_traffic_source_news->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_thump = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_thump_params);
+		$us_traffic_source_thump = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_thump_params);
 		$us_traffic_source_thump_percent = round(($us_traffic_source_thump->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_fightland = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_fightland_params);
+		$us_traffic_source_fightland = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_fightland_params);
 		$us_traffic_source_fightland_percent = round(($us_traffic_source_fightland->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_tcp = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_tcp_params);
+		$us_traffic_source_tcp = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_tcp_params);
 		$us_traffic_source_tcp_percent = round(($us_traffic_source_tcp->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_iD = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_iD_params);
+		$us_traffic_source_iD = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_iD_params);
 		$us_traffic_source_iD_percent = round(($us_traffic_source_iD->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_sports = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_sports_params);
+		$us_traffic_source_sports = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_sports_params);
 		$us_traffic_source_sports_percent = round(($us_traffic_source_sports->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_munchies = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_munchies_params);
+		$us_traffic_source_munchies = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_munchies_params);
 		$us_traffic_source_munchies_percent = round(($us_traffic_source_munchies->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
 		/*
@@ -287,13 +286,13 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 		*/
 			
 			// Facebook
-			$us_traffic_source_facebook = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_facebook_params);
+			$us_traffic_source_facebook = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_facebook_params);
 			// twitter
-			$us_traffic_source_twitter = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_twitter_params);
+			$us_traffic_source_twitter = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_twitter_params);
 			// reddit 
-			$us_traffic_source_reddit = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_reddit_params);
+			$us_traffic_source_reddit = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_reddit_params);
 			// youtube
-			$us_traffic_source_youtube = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_youtube_params);
+			$us_traffic_source_youtube = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_youtube_params);
 
 			$fb = $us_traffic_source_facebook->totalsForAllResults['ga:sessions'];
 			$tw = $us_traffic_source_twitter->totalsForAllResults['ga:sessions'];
@@ -329,13 +328,13 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 			// 'filters' => 'ga:country==United States',
 		);
 
-		$us_traffic_source_paid = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_paid_params);
+		$us_traffic_source_paid = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_paid_params);
 		$us_traffic_source_paid_percent = round(($us_traffic_source_paid->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_search = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_search_params);
+		$us_traffic_source_search = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_search_params);
 		$us_traffic_source_search_percent = round(($us_traffic_source_search->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
-		$us_traffic_source_direct = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$source_direct_params);
+		$us_traffic_source_direct = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$source_direct_params);
 		$us_traffic_source_direct_percent = round(($us_traffic_source_direct->totalsForAllResults['ga:sessions'] / $general->totalsForAllResults['ga:sessions']) * 100, 2);
 
 
@@ -353,7 +352,7 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 			'segment' => 'gaid::-14',
 		);
 
-		$mobile_data = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$mobile_params);
+		$mobile_data = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$mobile_params);
 		$mobile_sessions = $mobile_data->totalsForAllResults['ga:sessions'];
 		$mobile_pageviews = $mobile_data->totalsForAllResults['ga:pageviews'];
 		$mobile_session_dur = $mobile_data->totalsForAllResults['ga:sessionDuration'];
@@ -365,7 +364,7 @@ $profiles = $service->management_profiles->listManagementProfiles("~all", "~all"
 			'segment' => 'gaid::-13',
 		);
 
-		$tablet_data = $service->data_ga->get($sports_id,$start_date,$end_date,$general_metrics,$tablet_params);
+		$tablet_data = $service->data_ga->get($vice_id,$start_date,$end_date,$general_metrics,$tablet_params);
 		$tablet_sessions = $tablet_data->totalsForAllResults['ga:sessions'];
 		$tablet_pageviews = $tablet_data->totalsForAllResults['ga:pageviews'];
 		$tablet_session_dur = $tablet_data->totalsForAllResults['ga:sessionDuration'];

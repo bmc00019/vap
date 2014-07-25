@@ -6,11 +6,48 @@
 
 */
 
+.results-wrapper {
+	@include defaults();
+	max-width: $siteMaxWidth;
+	padding: 0 2rem 5rem;
+	@include clearfix2();
+
+	@include respond-to(bp1000) {
+		padding: 0 0 5rem 0;
+	}
+
+}
+
+table {
+	float: left;
+	margin-right: 1rem;
+}
+table tr td {
+	border-bottom: 1px solid #efefef;
+}
+table.data-type {
+}
+
+table.data {
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: $siteHeaderFontStack;
+	margin-bottom: 0.5rem;
+	font-weight: normal;
+}
+
+h3 {
+	font-family: $siteFontStack;
+}
+
 .form-container {
 	@include defaults();
 	margin-top: 5rem;
 	max-width: 16rem;
 	border: 1px solid black;
+	position: relative;
+
 
 	h1 {
 		font-size: 1em;
@@ -65,5 +102,28 @@
 		}
 
 	}
-	
+	.loader {
+		@include defaults();
+		display: none;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background: white;
+		padding-top: 8rem;
+
+		img {
+			width: 70px;
+		}
+
+		p {
+			@include defaults();
+			margin-top: 1rem;
+			display: block;
+			text-align: center;
+			font-size: 0.75rem;
+		}
+	}
 }

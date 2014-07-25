@@ -455,9 +455,58 @@ $traffic_source_data_arr = array(
 <head>
 	<meta charset="UTF-8">
 	<title>Results</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+	<?php
+		$vertical_name = '';
+		switch($vertical) {
+			case "ga:45303215" : 
+				$vertical_name = 'VICE.com';
+				break;
+			case "ga:60455995" :
+				$vertical_name = 'Noisey';
+				break;
+			case "ga:19645623" :
+				$vertical_name = 'Motherboard';
+				break;
+			case "ga:80445276" :
+				$vertical_name = 'News';
+				break;
+			case "ga:71103059" :
+				$vertical_name = 'Thump';
+				break;
+			case "ga:64493123" :
+				$vertical_name = 'Fightland';
+				break;
+			case "ga:78356421";
+				$vertical_name = 'i-D';
+				break;
+			case "ga:31015241";
+				$vertical_name = 'Creators Project';
+				break;
+			case "ga:84227980";
+				$vertical_name = 'Munchies';
+				break;
+			case "ga:86656621";
+				$vertical_name = 'Sports';
+				break;
+		}
+
+		$country_selection = '';
+
+		if ($country == 1) {
+			$country_selection = 'Global';
+		} else {
+			$country_selection = 'US Only';
+		}
+
+	?>
+<div class="results-wrapper">
+	<h2><?php echo $vertical_name; ?></h2>
+	<h3><?php echo "Start/end dates: " . $start_date . " - " . $end_date; ?></h3>
+	<h4><?php echo $country_selection; ?></h4>
+	<br/><br/>
 	<table class="data-type">
 		<!-- GENERAL -->
 		<tr>
@@ -598,7 +647,7 @@ $traffic_source_data_arr = array(
 		</tr>
 	</table>
 	<table class="data">
-		<tr><td><strong>General</strong></td></tr>
+		<tr><td><strong>&nbsp;</strong></td></tr>
 		<?php 
 			foreach ($general_data_arr as $key => $value) {
 				echo "<tr><td>";
@@ -647,5 +696,6 @@ $traffic_source_data_arr = array(
 			}
 		?>
 	</table>
+</div>
 </body>
 </html>

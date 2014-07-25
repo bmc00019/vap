@@ -261,6 +261,47 @@ td {
 	----------------------
 
 */
+.results-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  max-width: 60.625em;
+  padding: 0 2rem 5rem;
+  *zoom: 1;
+}
+.results-wrapper:before, .results-wrapper:after {
+  content: " ";
+  display: table;
+}
+.results-wrapper:after {
+  clear: both;
+}
+@media only screen and (min-width: 62.5em) {
+  .results-wrapper {
+    padding: 0 0 5rem 0;
+  }
+}
+
+table {
+  float: left;
+  margin-right: 1rem;
+}
+
+table tr td {
+  border-bottom: 1px solid #efefef;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Oswald", Helvetica, Arial, sans-serif;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
 .form-container {
   width: 100%;
   margin: 0 auto;
@@ -269,6 +310,7 @@ td {
   margin-top: 5rem;
   max-width: 16rem;
   border: 1px solid black;
+  position: relative;
 }
 .form-container h1 {
   font-size: 1em;
@@ -330,4 +372,32 @@ td {
   padding: 1rem;
   font-family: "Oswald", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
+}
+.form-container .loader {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  display: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: white;
+  padding-top: 8rem;
+}
+.form-container .loader img {
+  width: 70px;
+}
+.form-container .loader p {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
 }

@@ -9,13 +9,13 @@
 	
 
 <div class="form-container">
-<h1>Janky, but functional GA Tool</h1>	
+	<h1>Janky, but functional GA Tool</h1>	
 	<form method="POST" action="results.php" id="">
 		<label for="start_date">Start Date</label>
-		<input type="text" name="start_date" id="start_date" placeholder="YYYY-MM-DD" value="2014-06-01">
+		<input type="text" name="start_date" id="start_date" placeholder="YYYY-MM-DD">
 
 		<label for="end_date">End Date</label>
-		<input type="text" name="end_date" id="end_date" placeholder="YYYY-MM-DD" value="2014-06-30">
+		<input type="text" name="end_date" id="end_date" placeholder="YYYY-MM-DD">
 
 		<label for="vertical_choice">Choose a Vertical</label>
 		<select name="vertical_choice" id="vertical_choice">
@@ -39,10 +39,23 @@
 
 		<input type="submit" class="submit">
 	</form>
+	<div class="loader">
+		<img src="assets/images/loader.gif" alt="loading">
+		<p>Please wait...</p>
+	</div>
 </div>
 
 
 
+<script type="text/javascript" src="assets/js/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+	
+	$('.submit').on('click', function() {
+		$('.loader').css({'display' : 'block'});
+	});
 
+
+
+</script>
 </body>
 </html>
